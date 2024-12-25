@@ -1,7 +1,7 @@
 export default function UploadIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
+      className="w-8 h-8 mb-4 text-gray-500"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"

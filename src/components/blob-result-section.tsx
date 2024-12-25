@@ -1,5 +1,6 @@
 import { PutBlobResult } from "@vercel/blob";
 import Image from "next/image";
+import CopyIcon from "./icons/copy-icon";
 
 type Props = {
   blob: PutBlobResult | null;
@@ -15,20 +16,17 @@ export default function BlobResultSection({ blob }: Props) {
     <div>
       {blob && (
         <div>
-          <div className="flex items-center gap-3">
+          <div className="flex lg:flex-row flex-col items-center gap-3">
             <span className="whitespace-nowrap">Blob Url:</span>
-            <div className="border border-gray-300 rounded-md py-1 px-2 whitespace-nowrap flex items-center justify-between gap-5">
-              <span>{blob?.url}</span>
+            <div className="border border-gray-300 rounded-md py-1 px-2 flex items-center gap-5">
+              <span className="lg:text-base text-xs whitespace-normal">{blob?.url}</span>
               <button
-                onClick={onCoplyLink}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Copy Link
+                onClick={onCoplyLink}>
+                <CopyIcon/>
               </button>
             </div>
           </div>
           <div className="flex justify-center mt-5">
-            <div className="w-1/2">
               <Image
                 src={blob.url}
                 width={0}
@@ -38,7 +36,6 @@ export default function BlobResultSection({ blob }: Props) {
                 alt={blob.contentType}
               />
             </div>
-          </div>
         </div>
       )}
     </div>
