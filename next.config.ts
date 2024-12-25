@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
         hostname: 'yipxoh5esvgq5lcw.public.blob.vercel-storage.com'
       }
     ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/upload',
+        permanent: true
+      }
+    ]
   }
 };
 
