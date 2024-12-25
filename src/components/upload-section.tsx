@@ -3,21 +3,23 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import type { PutBlobResult } from "@vercel/blob";
+import UploadContainer from "./upload-container";
 
 export default function UploadSection() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-  
+  const [loading, setLoading] = useState(false);
 
   return (
     <>
       <h1>Upload Your Avatar</h1>
-
       <form
         onSubmit={async (event) => {
           event.preventDefault();
+          setLoading(true);
 
           if (!inputFileRef.current?.files) {
+            setLoading(false);
             throw new Error("No file selected");
           }
 
@@ -37,15 +39,22 @@ export default function UploadSection() {
           } else {
             console.error("Upload failed");
           }
+          setLoading(false);
         }}
       >
-        <input name="file" ref={inputFileRef} type="file" required />
-        <button type="submit">Upload</button>
+        <UploadContainer inputFileRef={inputFileRef} />
+        <button type="submit" disabled={loading}>
+          Upload
+        </button>
       </form>
-
+      {loading && (
+        <p className="animate-pulse h-5 w-full bg-gray-200 rounded"></p>
+      )}
       {blob && (
         <div>
-          <p>Blob URL: <a href={blob.url}>{blob.url}</a></p>
+          <p>
+            Blob URL: <a href={blob.url}>{blob.url}</a>
+          </p>
           <div className="w-1/2">
             <Image
               src={blob.url}
