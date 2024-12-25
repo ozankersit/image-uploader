@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useRef } from "react";
-import Image from "next/image";
+
 import type { PutBlobResult } from "@vercel/blob";
 import UploadContainer from "./upload-container";
+import BlobResultSection from "./blob-result-section";
 
 export default function UploadSection() {
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -47,25 +48,10 @@ export default function UploadSection() {
           Upload
         </button>
       </form>
-      {loading && (
+      {loading ? (
         <p className="animate-pulse h-5 w-full bg-gray-200 rounded"></p>
-      )}
-      {blob && (
-        <div>
-          <p>
-            Blob URL: <a href={blob.url}>{blob.url}</a>
-          </p>
-          <div className="w-1/2">
-            <Image
-              src={blob.url}
-              width={0}
-              height={0}
-              sizes="100vw"
-              className="w-full object-cover"
-              alt={blob.contentType}
-            />
-          </div>
-        </div>
+      ) : (
+        <BlobResultSection blob={blob} />
       )}
     </>
   );
