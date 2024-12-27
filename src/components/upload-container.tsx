@@ -6,7 +6,7 @@ type Props = {
 
 export default function UploadContainer({inputFileRef}: Props) {
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full mt-5 md:px-0 px-5">
       <label
         htmlFor="dropzone-file"
         className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100"
@@ -18,7 +18,7 @@ export default function UploadContainer({inputFileRef}: Props) {
             drop
           </p>
           <p className="text-xs text-gray-500">
-            SVG, PNG, JPG or GIF (MAX. 800x400px)
+            up to 45mb
           </p>
         </div>
         <input
@@ -28,7 +28,7 @@ export default function UploadContainer({inputFileRef}: Props) {
           className="hidden"
           id="dropzone-file"
           required
-          accept="image/png, image/gif, image/jpeg, image/svg"
+          // accept="image/png, image/gif, image/jpeg, image/svg"
         />
       </label>
     </div>

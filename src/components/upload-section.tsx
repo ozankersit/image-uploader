@@ -13,7 +13,6 @@ export default function UploadSection() {
 
   return (
     <>
-      <h1>Upload Your Avatar</h1>
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -44,9 +43,12 @@ export default function UploadSection() {
         }}
       >
         <UploadContainer inputFileRef={inputFileRef} />
-        <button type="submit" disabled={loading}>
+        <div className="flex justify-center my-5">
+          <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-500 text-white rounded">
           Upload
         </button>
+        </div>
+        
       </form>
       {loading ? (
         <p className="animate-pulse h-5 w-full bg-gray-200 rounded"></p>
