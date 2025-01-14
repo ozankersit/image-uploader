@@ -11,7 +11,7 @@ export default function UploadSection() {
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const [isPending, startTransition] = useTransition();
 
-  const handleSubmmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     startTransition(async () => {
       if (!inputFileRef.current?.files) {
@@ -36,7 +36,7 @@ export default function UploadSection() {
 
   return (
     <>
-      <form onSubmit={handleSubmmit}>
+      <form onSubmit={handleSubmit}>
         <UploadContainer inputFileRef={inputFileRef} />
         <div className="flex justify-center my-5">
           <button
